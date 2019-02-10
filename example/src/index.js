@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import SignatureCanvas from '../../src/index.tsx'
+import SignatureCanvas from 'react-signature-canvas'
 
 import * as styles from './styles.module.css'
 

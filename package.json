@@ -1,19 +1,7 @@
 {
-  "name": "react-signature-canvas",
-  "version": "1.0.5",
-  "description": "A React wrapper component around signature_pad. Unopinionated and heavily updated fork of react-signature-pad",
-  "source": "src/index.tsx",
-  "main": "dist/index.umd.min.js",
-  "module": "dist/index.mjs",
-  "exports": {
-    "require": "./dist/index.umd.min.js",
-    "default": "./dist/index.mjs"
-  },
-  "typings": "dist/index.d.ts",
-  "files": [
-    "src/",
-    "dist/"
-  ],
+  "name": "react-signature-canvas-example",
+  "version": "1.0.7",
+  "description": "Example for react-signature-canvas",
   "author": "Anton Gilgur",
   "license": "Apache-2.0",
   "homepage": "https://github.com/agilgur5/react-signature-canvas",
@@ -27,90 +15,20 @@
   "funding": {
     "url": "https://github.com/sponsors/agilgur5"
   },
-  "keywords": [
-    "react",
-    "react-component",
-    "component",
-    "signature",
-    "sign",
-    "e-sign",
-    "e-signature",
-    "canvas",
-    "trim",
-    "whitespace",
-    "draw",
-    "pad",
-    "wrapper",
-    "signature-pad",
-    "react-signature-pad"
-  ],
+  "private": true,
   "scripts": {
     "start": "parcel example/public/index.html --open",
     "clean": "rm -rf dist/ && rm -f *.tgz",
     "clean:build": "npm run clean && npm run build",
-    "build": "concurrently -n rollup,tsc \"npm run build:rollup\" \"npm run build:types\"",
-    "build:rollup": "rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2",
-    "build:types": "tsc -p tsconfig.build.json",
-    "build:watch": "concurrently -n rollup,tsc \"npm run build:rollup -- -w\" \"npm run build:types -- -w\"",
-    "tsc": "tsc",
-    "lint": "ts-standard",
-    "lint:fix": "npm run lint -- --fix",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch",
-    "test:pub": "npm run clean:build && npm pack",
-    "prepub": "concurrently -n test-pub,test-cov,tsc \"npm run test:pub\" \"npm run test:coverage\" \"npm run tsc\"",
-    "pub": "npm run clean:build && npm publish",
-    "changelog": "changelog-maker"
-  },
-  "peerDependencies": {
-    "prop-types": "^15.5.8",
-    "react": "0.14 - 19",
-    "react-dom": "0.14 - 19"
+    "build": "parcel build example/public/index.html"
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.9",
-    "@types/prop-types": "^15.7.3",
-    "@types/react": "^19.0.2",
-    "@types/signature_pad": "^2.3.0",
-    "signature_pad": "^2.3.2",
-    "trim-canvas": "^0.1.0"
-  },
-  "devDependencies": {
-    "@agilgur5/changelog-maker": "^3.0.0",
-    "@agilgur5/tsconfig": "^0.0.1",
-    "@babel/core": "^7.17.9",
-    "@babel/plugin-transform-runtime": "^7.17.0",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-react": "^7.16.7",
-    "@babel/preset-typescript": "^7.16.7",
-    "@jest/globals": "^29.7.0",
-    "@jest/types": "^29.6.3",
-    "@rollup/plugin-babel": "^5.3.1",
-    "@rollup/plugin-commonjs": "^21.1.0",
-    "@rollup/plugin-node-resolve": "^13.2.1",
-    "@testing-library/react": "^16.1.0",
-    "canvas": "^3.0.0",
-    "concurrently": "^9.1.2",
-    "jest": "^29.7.0",
-    "jest-config": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
-    "package-json-type": "^1.0.3",
-    "parcel": "^2.4.1",
+    "prop-types": "^15.5.8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "rollup": "^2.70.2",
-    "rollup-plugin-node-externals": "^4.0.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.32.1",
-    "ts-node": "^10.7.0",
-    "ts-standard": "^11.0.0",
-    "typescript": "^4.6.3",
-    "window-resizeto": "^0.0.2"
+    "react-signature-canvas": "^1.0.7"
   },
-  "overrides": {
-    "jest-environment-jsdom": {
-      "canvas": "$canvas"
-    }
+  "devDependencies": {
+    "parcel": "^2.4.1"
   }
 }

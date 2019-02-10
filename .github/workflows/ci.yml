@@ -21,14 +21,5 @@ jobs:
     - name: Install
       run: npm ci
 
-    - name: Typecheck
-      run: npm run tsc
-    - name: Lint
-      run: npm run lint
     - name: Build
       run: npm run build
-
-    - name: Test w/ coverage report
-      run: npm run test:coverage
-    - name: Upload coverage report to Codecov
-      uses: codecov/codecov-action@v5
