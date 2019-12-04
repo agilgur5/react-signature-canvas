@@ -4,7 +4,7 @@
   "description": "A React wrapper component around signature_pad. Unopinionated and heavily updated fork of react-signature-pad",
   "main": "build/index.js",
   "files": [
-    "src/index.js",
+    "src/",
     "build/"
   ],
   "author": "Anton Gilgur",

@@ -1,13 +1,13 @@
 module.exports = {
   moduleNameMapper: {
     // allow importing of Jest as an ES Module (https://github.com/facebook/jest/pull/7571#issuecomment-498634094)
-    '^jest$': '<rootDir>/test-utils/jest-export.js'
+    '^jest$': '<rootDir>/test/config/jest-export.js'
   },
   setupFilesAfterEnv: [
     // configure enzyme w/ react adapter
-    '<rootDir>/test-utils/configure-enzyme.js',
+    '<rootDir>/test/config/configure-enzyme.js',
     // polyfill window.resizeTo
-    '<rootDir>/test-utils/window-resizeTo.js'
+    '<rootDir>/test/config/window-resizeTo.js'
   ],
   transform: {
     // use babel-jest@23 for babel@6 support (https://github.com/facebook/jest/issues/8230#issuecomment-479470547)
@@ -15,6 +15,6 @@ module.exports = {
   },
   coveragePathIgnorePatterns: [
     '/node_modules/', // default
-    '<rootDir>/test-utils/' // ignore test-utils
+    '<rootDir>/test/' // ignore any test helper files
   ]
 }

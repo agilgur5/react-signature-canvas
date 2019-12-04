@@ -2,8 +2,8 @@ import jest, { describe, it, test, expect } from 'jest'
 import { mount } from 'enzyme'
 import React from 'react'
 
-import SignatureCanvas from './index.js'
-import { propsF, dotF } from '../test-utils/fixtures.js'
+import SignatureCanvas from '../src/index.js'
+import { propsF, dotF } from './fixtures.js'
 
 test('mounts canvas and instance properly', () => {
   const wrapper = mount(<SignatureCanvas />)
