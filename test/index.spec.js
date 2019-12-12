@@ -1,4 +1,4 @@
-import jest, { describe, it, test, expect } from 'jest'
+import { jest, describe, it, test, expect } from 'jest-without-globals'
 import { mount } from 'enzyme'
 import React from 'react'
 

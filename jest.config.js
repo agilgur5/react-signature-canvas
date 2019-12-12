@@ -1,8 +1,4 @@
 module.exports = {
-  moduleNameMapper: {
-    // allow importing of Jest as an ES Module (https://github.com/facebook/jest/pull/7571#issuecomment-498634094)
-    '^jest$': '<rootDir>/test/config/jest-export.js'
-  },
   setupFilesAfterEnv: [
     // configure enzyme w/ react adapter
     '<rootDir>/test/config/configure-enzyme.js',
