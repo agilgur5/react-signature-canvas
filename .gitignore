@@ -1,7 +1,7 @@
 ### custom ###
 
 # build output
-build/
+dist/
 # test coverage output
 coverage/
 
