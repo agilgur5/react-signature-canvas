@@ -15,8 +15,9 @@ class App extends Component {
   }
 
   trim = () => {
-    this.setState({ trimmedDataURL: this.sigPad.getTrimmedCanvas()
-      .toDataURL('image/png') })
+    this.setState({
+      trimmedDataURL: this.sigPad.getTrimmedCanvas().toDataURL('image/png')
+    })
   }
 
   render () {
@@ -35,7 +36,7 @@ class App extends Component {
         </button>
       </div>
       {trimmedDataURL
-        ? <img className={styles.sigImage}
+        ? <img className={styles.sigImage} alt='signature'
           src={trimmedDataURL} />
         : null}
     </div>
