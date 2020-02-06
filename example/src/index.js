@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
-import SignaturePad from '../src/index.js'
+import SignaturePad from '../../src/index.js'
 
-import styles from './styles.cssm'
+import styles from './styles.module.css'
 
 class App extends Component {
   state = { trimmedDataURL: null }

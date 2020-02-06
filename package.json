@@ -40,9 +40,9 @@
     "react-signature-pad"
   ],
   "scripts": {
+    "start": "parcel example/public/index.html",
     "lint": "tsdx lint '**/*.js'",
     "lint:fix": "tsdx lint '**/*.js' --fix",
-    "start": "webpack-dev-server -d --inline --hot",
     "build": "tsdx build",
     "test": "tsdx test",
     "test:pub": "npm run build && npm pack",
@@ -60,16 +60,11 @@
   },
   "devDependencies": {
     "@agilgur5/changelog-maker": "^3.0.0",
+    "@babel/core": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
-    "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.2",
-    "babel-loader": "^6.0.0",
-    "babel-preset-es2015": "^6.14.0",
-    "babel-preset-react": "^6.11.1",
-    "babel-preset-stage-2": "^6.13.0",
     "canvas": "^2.9.0",
-    "css-loader": "^0.24.0",
     "enzyme": "^3.10.0",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
@@ -80,13 +75,12 @@
     "eslint-plugin-standard": "^4.0.1",
     "jest-environment-jsdom-fifteen": "^1.0.2",
     "jest-without-globals": "^0.0.2",
+    "parcel": "^1.12.4",
+    "postcss-modules": "^1.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hot-loader": "^4.13.0",
-    "style-loader": "^0.13.1",
     "tsdx": "^0.12.3",
-    "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.10.1",
     "window-resizeto": "0.0.2"
   }
 }
