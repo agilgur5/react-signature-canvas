@@ -9,7 +9,8 @@ module.exports = {
   ],
   transform: {
     // support babel-jest. TSDX defaults to just ts-jest. see https://github.com/jaredpalmer/tsdx/pull/486
-    '\\.js$': 'babel-jest'
+    '\\.js$': 'babel-jest',
+    '\\.tsx$': 'ts-jest'
   },
   // support JS + JSX. TSDX defaults to just TS + TSX. see https://github.com/jaredpalmer/tsdx/pull/486
   testMatch: ['**/?(*.)+(spec|test).[jt]s?(x)'],

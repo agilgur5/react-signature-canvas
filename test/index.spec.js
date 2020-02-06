@@ -2,7 +2,7 @@ import { jest, describe, it, test, expect } from 'jest-without-globals'
 import { mount } from 'enzyme'
 import React from 'react'
 
-import SignatureCanvas from '../src/index.js'
+import SignatureCanvas from '../src/index.tsx'
 import { propsF, dotF } from './fixtures.js'
 
 test('mounts canvas and instance properly', () => {

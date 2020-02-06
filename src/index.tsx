@@ -3,7 +3,12 @@ import React, { Component } from 'react'
 import SignaturePad from 'signature_pad'
 import trimCanvas from 'trim-canvas'
 
-export class SignatureCanvas extends Component {
+export interface SignatureCanvasProps extends SignaturePad.SignaturePadOptions {
+  canvasProps?: React.CanvasHTMLAttributes<HTMLCanvasElement>,
+  clearOnResize?: boolean
+}
+
+export class SignatureCanvas extends Component<SignatureCanvasProps> {
   static propTypes = {
     // signature_pad's props
     velocityFilterWeight: PropTypes.number,
@@ -24,7 +29,15 @@ export class SignatureCanvas extends Component {
     clearOnResize: true
   }
 
-  _sigPad = null
+  // this is some hack-ish init and casting to avoid `| null` everywhere :/
+  _sigPad: SignaturePad = {} as SignaturePad
+  _canvas: HTMLCanvasElement = {} as HTMLCanvasElement
+
+  private readonly setRef = (ref: HTMLCanvasElement | null) => {
+    if (ref) {
+      this._canvas = ref
+    }
+  }
 
   _excludeOurProps = () => {
     const { canvasProps, clearOnResize, ...sigPadProps } = this.props
@@ -47,23 +60,23 @@ export class SignatureCanvas extends Component {
   }
 
   // return the canvas ref for operations like toDataURL
-  getCanvas = () => {
+  getCanvas = (): HTMLCanvasElement => {
     return this._canvas
   }
 
   // return a trimmed copy of the canvas
-  getTrimmedCanvas = () => {
+  getTrimmedCanvas = (): HTMLCanvasElement => {
     // copy the canvas
     const copy = document.createElement('canvas')
     copy.width = this._canvas.width
     copy.height = this._canvas.height
-    copy.getContext('2d').drawImage(this._canvas, 0, 0)
+    copy.getContext('2d')!.drawImage(this._canvas, 0, 0)
     // then trim it
     return trimCanvas(copy)
   }
 
   // return the internal SignaturePad reference
-  getSignaturePad = () => {
+  getSignaturePad = (): SignaturePad => {
     return this._sigPad
   }
 
@@ -94,48 +107,48 @@ export class SignatureCanvas extends Component {
     if (!height) {
       canvas.height = canvas.offsetHeight * ratio
     }
-    canvas.getContext('2d').scale(ratio, ratio)
+    canvas.getContext('2d')!.scale(ratio, ratio)
     this.clear()
   }
 
   render () {
     const { canvasProps } = this.props
-    return <canvas ref={(ref) => { this._canvas = ref }} {...canvasProps} />
+    return <canvas ref={this.setRef} {...canvasProps} />
   }
 
   // all wrapper functions below render
   //
-  on = () => {
+  on: SignaturePad['on'] = () => {
     window.addEventListener('resize', this._checkClearOnResize)
     return this._sigPad.on()
   }
 
-  off = () => {
+  off: SignaturePad['off'] = () => {
     window.removeEventListener('resize', this._checkClearOnResize)
     return this._sigPad.off()
   }
 
-  clear = () => {
+  clear: SignaturePad['clear'] = () => {
     return this._sigPad.clear()
   }
 
-  isEmpty = () => {
+  isEmpty: SignaturePad['isEmpty'] = () => {
     return this._sigPad.isEmpty()
   }
 
-  fromDataURL = (dataURL, options) => {
+  fromDataURL: SignaturePad['fromDataURL'] = (dataURL, options) => {
     return this._sigPad.fromDataURL(dataURL, options)
   }
 
-  toDataURL = (type, encoderOptions) => {
+  toDataURL: SignaturePad['toDataURL'] = (type, encoderOptions) => {
     return this._sigPad.toDataURL(type, encoderOptions)
   }
 
-  fromData = (pointGroups) => {
+  fromData: SignaturePad['fromData'] = (pointGroups) => {
     return this._sigPad.fromData(pointGroups)
   }
 
-  toData = () => {
+  toData: SignaturePad['toData'] = () => {
     return this._sigPad.toData()
   }
 }
