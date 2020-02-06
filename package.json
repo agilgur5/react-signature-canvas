@@ -63,6 +63,7 @@
     "@agilgur5/changelog-maker": "^3.0.0",
     "@babel/core": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
+    "@types/enzyme": "^3.10.4",
     "@types/prop-types": "^15.7.3",
     "@types/react": "^17.0.44",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
