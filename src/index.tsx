@@ -90,14 +90,11 @@ export class SignatureCanvas extends Component<SignatureCanvasProps> {
     this._resizeCanvas()
   }
 
-  // a few eslint disables of strict-boolean-expressions here because changing
-  // these lines would be breaking -- 0s, '', null etc are falsey
   _resizeCanvas = (): void => {
     const canvasProps = this.props.canvasProps ?? {}
     const { width, height } = canvasProps
     // don't resize if the canvas has fixed width and height
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (width && height) {
+    if (typeof width !== 'undefined' && typeof height !== 'undefined') {
       return
     }
 
@@ -107,12 +104,10 @@ export class SignatureCanvas extends Component<SignatureCanvasProps> {
       and only part of the canvas is cleared then. */
     const ratio = Math.max(window.devicePixelRatio ?? 1, 1)
 
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (!width) {
+    if (typeof width === 'undefined') {
       canvas.width = canvas.offsetWidth * ratio
     }
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (!height) {
+    if (typeof height === 'undefined') {
       canvas.height = canvas.offsetHeight * ratio
     }
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
