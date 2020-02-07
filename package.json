@@ -41,8 +41,8 @@
   ],
   "scripts": {
     "start": "parcel example/public/index.html",
-    "lint": "tsdx lint '**/*.js'",
-    "lint:fix": "tsdx lint '**/*.js' --fix",
+    "lint": "tsdx lint '**/*.js' '**/*.ts' '**/*.tsx'",
+    "lint:fix": "npm run lint -- --fix",
     "build": "tsdx build",
     "test": "tsdx test",
     "test:pub": "npm run build && npm pack",
@@ -72,6 +72,7 @@
     "enzyme": "^3.10.0",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard-with-typescript": "^12.0.1",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.1",

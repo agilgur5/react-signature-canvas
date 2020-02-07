@@ -4,7 +4,7 @@ import SignaturePad from 'signature_pad'
 import trimCanvas from 'trim-canvas'
 
 export interface SignatureCanvasProps extends SignaturePad.SignaturePadOptions {
-  canvasProps?: React.CanvasHTMLAttributes<HTMLCanvasElement>,
+  canvasProps?: React.CanvasHTMLAttributes<HTMLCanvasElement>
   clearOnResize?: boolean
 }
 
