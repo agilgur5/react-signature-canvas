@@ -5,7 +5,7 @@ import trimCanvas from 'trim-canvas'
 
 export interface SignatureCanvasProps extends SignaturePad.SignaturePadOptions {
   canvasProps?: React.CanvasHTMLAttributes<HTMLCanvasElement>
-  clearOnResize?: boolean
+  clearOnResize: boolean
 }
 
 export class SignatureCanvas extends Component<SignatureCanvasProps> {
@@ -25,16 +25,18 @@ export class SignatureCanvas extends Component<SignatureCanvasProps> {
     clearOnResize: PropTypes.bool
   }
 
-  static defaultProps = {
+  static defaultProps: Pick<SignatureCanvasProps, 'clearOnResize'> = {
     clearOnResize: true
   }
 
   // this is some hack-ish init and casting to avoid `| null` everywhere :/
+  /* eslint-disable @typescript-eslint/consistent-type-assertions */
   _sigPad: SignaturePad = {} as SignaturePad
   _canvas: HTMLCanvasElement = {} as HTMLCanvasElement
+  /* eslint-enable @typescript-eslint/consistent-type-assertions */
 
   private readonly setRef = (ref: HTMLCanvasElement | null): void => {
-    if (ref) {
+    if (ref !== null) {
       this._canvas = ref
     }
   }
@@ -70,6 +72,7 @@ export class SignatureCanvas extends Component<SignatureCanvasProps> {
     const copy = document.createElement('canvas')
     copy.width = this._canvas.width
     copy.height = this._canvas.height
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     copy.getContext('2d')!.drawImage(this._canvas, 0, 0)
     // then trim it
     return trimCanvas(copy)
@@ -87,10 +90,13 @@ export class SignatureCanvas extends Component<SignatureCanvasProps> {
     this._resizeCanvas()
   }
 
+  // a few eslint disables of strict-boolean-expressions here because changing
+  // these lines would be breaking -- 0s, '', null etc are falsey
   _resizeCanvas = (): void => {
-    const canvasProps = this.props.canvasProps || {}
+    const canvasProps = this.props.canvasProps ?? {}
     const { width, height } = canvasProps
     // don't resize if the canvas has fixed width and height
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (width && height) {
       return
     }
@@ -99,14 +105,17 @@ export class SignatureCanvas extends Component<SignatureCanvasProps> {
     /* When zoomed out to less than 100%, for some very strange reason,
       some browsers report devicePixelRatio as less than 1
       and only part of the canvas is cleared then. */
-    const ratio = Math.max(window.devicePixelRatio || 1, 1)
+    const ratio = Math.max(window.devicePixelRatio ?? 1, 1)
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (!width) {
       canvas.width = canvas.offsetWidth * ratio
     }
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (!height) {
       canvas.height = canvas.offsetHeight * ratio
     }
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     canvas.getContext('2d')!.scale(ratio, ratio)
     this.clear()
   }
