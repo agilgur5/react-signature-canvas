@@ -33,29 +33,29 @@ export class SignatureCanvas extends Component<SignatureCanvasProps> {
   _sigPad: SignaturePad = {} as SignaturePad
   _canvas: HTMLCanvasElement = {} as HTMLCanvasElement
 
-  private readonly setRef = (ref: HTMLCanvasElement | null) => {
+  private readonly setRef = (ref: HTMLCanvasElement | null): void => {
     if (ref) {
       this._canvas = ref
     }
   }
 
-  _excludeOurProps = () => {
+  _excludeOurProps = (): SignaturePad.SignaturePadOptions => {
     const { canvasProps, clearOnResize, ...sigPadProps } = this.props
     return sigPadProps
   }
 
-  componentDidMount () {
+  componentDidMount: Component['componentDidMount'] = () => {
     this._sigPad = new SignaturePad(this._canvas, this._excludeOurProps())
     this._resizeCanvas()
     this.on()
   }
 
-  componentWillUnmount () {
+  componentWillUnmount: Component['componentWillUnmount'] = () => {
     this.off()
   }
 
   // propagate prop updates to SignaturePad
-  componentDidUpdate () {
+  componentDidUpdate: Component['componentDidUpdate'] = () => {
     Object.assign(this._sigPad, this._excludeOurProps())
   }
 
@@ -80,14 +80,14 @@ export class SignatureCanvas extends Component<SignatureCanvasProps> {
     return this._sigPad
   }
 
-  _checkClearOnResize = () => {
+  _checkClearOnResize = (): void => {
     if (!this.props.clearOnResize) {
       return
     }
     this._resizeCanvas()
   }
 
-  _resizeCanvas = () => {
+  _resizeCanvas = (): void => {
     const canvasProps = this.props.canvasProps || {}
     const { width, height } = canvasProps
     // don't resize if the canvas has fixed width and height
@@ -111,7 +111,7 @@ export class SignatureCanvas extends Component<SignatureCanvasProps> {
     this.clear()
   }
 
-  render () {
+  render: Component['render'] = () => {
     const { canvasProps } = this.props
     return <canvas ref={this.setRef} {...canvasProps} />
   }
