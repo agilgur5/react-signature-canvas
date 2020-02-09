@@ -226,3 +226,19 @@ describe('on & off methods', () => {
     expect(instance.on).not.toBeCalled()
   })
 })
+
+// unmounting comes last
+describe('unmounting', () => {
+  const wrapper = mount(<SignatureCanvas />)
+  const instance = rSCInstance(wrapper)
+
+  it('should error when retrieving instance variables', () => {
+    wrapper.unmount()
+    expect(() => {
+      instance.getCanvas()
+    }).toThrowError(SignatureCanvas.refNullError)
+    expect(() => {
+      instance.getSignaturePad()
+    }).toThrowError(SignatureCanvas.refNullError)
+  })
+})

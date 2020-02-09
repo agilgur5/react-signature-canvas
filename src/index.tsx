@@ -29,15 +29,20 @@ export class SignatureCanvas extends Component<SignatureCanvasProps> {
     clearOnResize: true
   }
 
-  // this is some hack-ish init and casting to avoid `| null` everywhere :/
-  /* eslint-disable @typescript-eslint/consistent-type-assertions */
-  _sigPad: SignaturePad = {} as SignaturePad
-  _canvas: HTMLCanvasElement = {} as HTMLCanvasElement
-  /* eslint-enable @typescript-eslint/consistent-type-assertions */
+  static refNullError = new Error('react-signature-canvas is currently ' +
+    'mounting or unmounting: React refs are null during this phase.')
+
+  // shortcut reference (https://stackoverflow.com/a/29244254/3431180)
+  private readonly staticThis = this.constructor as typeof SignatureCanvas
+
+  _sigPad: SignaturePad | null = null
+  _canvas: HTMLCanvasElement | null = null
 
   private readonly setRef = (ref: HTMLCanvasElement | null): void => {
-    if (ref !== null) {
-      this._canvas = ref
+    this._canvas = ref
+    // if component is unmounted, set internal references to null
+    if (this._canvas === null) {
+      this._sigPad = null
     }
   }
 
@@ -47,7 +52,8 @@ export class SignatureCanvas extends Component<SignatureCanvasProps> {
   }
 
   componentDidMount: Component['componentDidMount'] = () => {
-    this._sigPad = new SignaturePad(this._canvas, this._excludeOurProps())
+    const canvas = this.getCanvas()
+    this._sigPad = new SignaturePad(canvas, this._excludeOurProps())
     this._resizeCanvas()
     this.on()
   }
@@ -63,23 +69,30 @@ export class SignatureCanvas extends Component<SignatureCanvasProps> {
 
   // return the canvas ref for operations like toDataURL
   getCanvas = (): HTMLCanvasElement => {
+    if (this._canvas === null) {
+      throw this.staticThis.refNullError
+    }
     return this._canvas
   }
 
   // return a trimmed copy of the canvas
   getTrimmedCanvas = (): HTMLCanvasElement => {
     // copy the canvas
+    const canvas = this.getCanvas()
     const copy = document.createElement('canvas')
-    copy.width = this._canvas.width
-    copy.height = this._canvas.height
+    copy.width = canvas.width
+    copy.height = canvas.height
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    copy.getContext('2d')!.drawImage(this._canvas, 0, 0)
+    copy.getContext('2d')!.drawImage(canvas, 0, 0)
     // then trim it
     return trimCanvas(copy)
   }
 
   // return the internal SignaturePad reference
   getSignaturePad = (): SignaturePad => {
+    if (this._sigPad === null) {
+      throw this.staticThis.refNullError
+    }
     return this._sigPad
   }
 
@@ -98,7 +111,7 @@ export class SignatureCanvas extends Component<SignatureCanvasProps> {
       return
     }
 
-    const canvas = this._canvas
+    const canvas = this.getCanvas()
     /* When zoomed out to less than 100%, for some very strange reason,
       some browsers report devicePixelRatio as less than 1
       and only part of the canvas is cleared then. */
@@ -124,36 +137,36 @@ export class SignatureCanvas extends Component<SignatureCanvasProps> {
   //
   on: SignaturePad['on'] = () => {
     window.addEventListener('resize', this._checkClearOnResize)
-    return this._sigPad.on()
+    return this.getSignaturePad().on()
   }
 
   off: SignaturePad['off'] = () => {
     window.removeEventListener('resize', this._checkClearOnResize)
-    return this._sigPad.off()
+    return this.getSignaturePad().off()
   }
 
   clear: SignaturePad['clear'] = () => {
-    return this._sigPad.clear()
+    return this.getSignaturePad().clear()
   }
 
   isEmpty: SignaturePad['isEmpty'] = () => {
-    return this._sigPad.isEmpty()
+    return this.getSignaturePad().isEmpty()
   }
 
   fromDataURL: SignaturePad['fromDataURL'] = (dataURL, options) => {
-    return this._sigPad.fromDataURL(dataURL, options)
+    return this.getSignaturePad().fromDataURL(dataURL, options)
   }
 
   toDataURL: SignaturePad['toDataURL'] = (type, encoderOptions) => {
-    return this._sigPad.toDataURL(type, encoderOptions)
+    return this.getSignaturePad().toDataURL(type, encoderOptions)
   }
 
   fromData: SignaturePad['fromData'] = (pointGroups) => {
-    return this._sigPad.fromData(pointGroups)
+    return this.getSignaturePad().fromData(pointGroups)
   }
 
   toData: SignaturePad['toData'] = () => {
-    return this._sigPad.toData()
+    return this.getSignaturePad().toData()
   }
 }
 
