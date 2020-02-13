@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import SignaturePad from 'signature_pad'
 import trimCanvas from 'trim-canvas'
 
-export default class SignatureCanvas extends Component {
+export class SignatureCanvas extends Component {
   static propTypes = {
     // signature_pad's props
     velocityFilterWeight: PropTypes.number,
@@ -139,3 +139,5 @@ export default class SignatureCanvas extends Component {
     return this._sigPad.toData()
   }
 }
+
+export default SignatureCanvas
