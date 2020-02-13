@@ -17,6 +17,9 @@
   "bugs": {
     "url": "https://github.com/agilgur5/react-signature-canvas/issues"
   },
+  "funding": {
+    "url": "https://github.com/sponsors/agilgur5"
+  },
   "keywords": [
     "react",
     "react-component",
