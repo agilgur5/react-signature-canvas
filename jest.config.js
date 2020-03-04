@@ -1,4 +1,6 @@
 module.exports = {
+  // Jest 24 defaults to JSDOM 11, upgrade to 15 to support canvas@2
+  testEnvironment: 'jest-environment-jsdom-fifteen',
   setupFilesAfterEnv: [
     // configure enzyme w/ react adapter
     '<rootDir>/test/config/configure-enzyme.js',
