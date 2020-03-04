@@ -41,10 +41,10 @@
     "lint": "standard --parser babel-eslint",
     "lint:fix": "standard --parser babel-eslint --fix",
     "start": "webpack-dev-server -d --inline --hot",
-    "dist": "webpack -p --config webpack.production.config.js",
+    "build": "webpack -p --config webpack.production.config.js",
     "test": "jest",
-    "test:pub": "npm run dist && npm pack",
-    "pub": "npm run dist && npm publish",
+    "test:pub": "npm run build && npm pack",
+    "pub": "npm run build && npm publish",
     "changelog": "changelog-maker"
   },
   "peerDependencies": {
