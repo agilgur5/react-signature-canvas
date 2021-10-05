@@ -46,8 +46,8 @@
   },
   "peerDependencies": {
     "prop-types": "^15.5.8",
-    "react": "0.14 - 16",
-    "react-dom": "0.14 - 16"
+    "react": "0.14 - 17",
+    "react-dom": "0.14 - 17"
   },
   "dependencies": {
     "signature_pad": "^2.3.2",
