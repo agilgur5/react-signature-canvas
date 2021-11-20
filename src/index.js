@@ -3,6 +3,9 @@ import React, { Component } from 'react'
 import SignaturePad from 'signature_pad'
 import trimCanvas from 'trim-canvas'
 
+const userAgent = window.navigator.userAgent
+const isTouchDevice = userAgent.indexOf("iPhone") >= 0 || userAgent.indexOf("iPad") >= 0 || userAgent.indexOf("Android") >= 0
+
 export default class SignatureCanvas extends Component {
   static propTypes = {
     // signature_pad's props
@@ -25,6 +28,8 @@ export default class SignatureCanvas extends Component {
   }
 
   _sigPad = null
+
+  _windowSize = { width: window.innerWidth, height: window.innerHeight }
 
   _excludeOurProps = () => {
     const { canvasProps, clearOnResize, ...sigPadProps } = this.props
@@ -67,11 +72,28 @@ export default class SignatureCanvas extends Component {
     return this._sigPad
   }
 
-  _checkClearOnResize = () => {
-    if (!this.props.clearOnResize) {
+  _handleResize = (callback) => {
+    if (this._windowSize.width === window.innerWidth &&
+      /**
+       * For touch devices, only compare width as the browser height
+       * might constantly change as user scrolls/touches like on iOS Safari.
+       */
+      (this._windowSize.height === window.innerHeight || isTouchDevice)
+    ) {
       return
     }
-    this._resizeCanvas()
+    // Update window size
+    this._windowSize = { width: window.innerWidth, height: window.innerHeight }
+    callback()
+  }
+
+  _checkClearOnResize = () => {
+    this._handleResize(() => {
+      if (!this.props.clearOnResize) {
+        return
+      }
+      this._resizeCanvas()
+    })
   }
 
   _resizeCanvas = () => {
