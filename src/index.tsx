@@ -51,19 +51,19 @@ export class SignatureCanvas extends Component<SignatureCanvasProps> {
     return sigPadProps
   }
 
-  componentDidMount: Component['componentDidMount'] = () => {
+  override componentDidMount: Component['componentDidMount'] = () => {
     const canvas = this.getCanvas()
     this._sigPad = new SignaturePad(canvas, this._excludeOurProps())
     this._resizeCanvas()
     this.on()
   }
 
-  componentWillUnmount: Component['componentWillUnmount'] = () => {
+  override componentWillUnmount: Component['componentWillUnmount'] = () => {
     this.off()
   }
 
   // propagate prop updates to SignaturePad
-  componentDidUpdate: Component['componentDidUpdate'] = () => {
+  override componentDidUpdate: Component['componentDidUpdate'] = () => {
     Object.assign(this._sigPad, this._excludeOurProps())
   }
 
@@ -128,7 +128,7 @@ export class SignatureCanvas extends Component<SignatureCanvasProps> {
     this.clear()
   }
 
-  render: Component['render'] = () => {
+  override render: Component['render'] = () => {
     const { canvasProps } = this.props
     return <canvas ref={this.setRef} {...canvasProps} />
   }

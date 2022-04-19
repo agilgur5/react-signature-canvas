@@ -1,4 +1,4 @@
-import SignaturePad from 'signature_pad'
+import type SignaturePad from 'signature_pad'
 
 // signature_pad options
 const sigPadOptions = {
