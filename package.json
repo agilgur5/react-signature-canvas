@@ -45,7 +45,7 @@
     "react-signature-pad"
   ],
   "scripts": {
-    "start": "parcel example/public/index.html",
+    "start": "parcel example/public/index.html --open",
     "clean": "rm -rf dist/ && rm -f *.tgz",
     "clean:build": "npm run clean && npm run build",
     "build": "concurrently -n rollup,tsc \"npm run build:rollup\" \"npm run build:types\"",
@@ -97,8 +97,7 @@
     "jest": "^27.5.1",
     "jest-config": "^27.5.1",
     "package-json-type": "^1.0.3",
-    "parcel": "^1.12.4",
-    "postcss-modules": "^1.5.0",
+    "parcel": "^2.4.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rollup": "^2.70.2",

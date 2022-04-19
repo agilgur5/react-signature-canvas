@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 
 import SignaturePad from '../../src/index.tsx'
 
-import styles from './styles.module.css'
+import * as styles from './styles.module.css'
 
 class App extends Component {
   state = { trimmedDataURL: null }

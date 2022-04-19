@@ -107,7 +107,7 @@ The API methods are _mostly_ just wrappers around [`signature_pad`'s API](https:
 
 You can interact with the example in a few different ways:
 
-1. Run `npm start` and navigate to [http://localhost:8080/](http://localhost:8080/).<br>
+1. Run `npm start` and navigate to [http://localhost:1234/](http://localhost:1234/).<br>
 Hosted locally via the [`example/`](example/) directory
 1. [View the live demo here](https://agilgur5.github.io/react-signature-canvas/).<br>
 Hosted via the [`gh-pages` branch](https://github.com/agilgur5/react-signature-canvas/tree/gh-pages), a standalone version of the code in [`example/`](example/)

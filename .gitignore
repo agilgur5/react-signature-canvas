@@ -1,7 +1,7 @@
 ### custom ###
 
 # parcel cache
-.cache/
+.parcel-cache/
 # build output
 dist/
 # test coverage output
