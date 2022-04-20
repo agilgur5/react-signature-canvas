@@ -1,0 +1,12 @@
+{
+  // tsconfig.json is used for type-checking _all_ files, tsconfig.rollup.json is just used for parsing rollup.config.ts
+  "extends": "./tsconfig.json",
+  // allowlist of files to build -- this is just an optimization
+  "files": ["rollup.config.ts"],
+  "compilerOptions": {
+    // this is currently erroring when used for configPlugins: https://github.com/ezolenko/rollup-plugin-typescript2/issues/310
+    "declarationMap": false,
+  },
+  // read this file as a tsconfig even though it's named slightly differently
+  "$schema": "https://json.schemastore.org/tsconfig",
+}

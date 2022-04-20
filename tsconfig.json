@@ -9,6 +9,8 @@
     "outDir": "dist/",
     // output .d.ts declaration files for consumers
     "declaration": true,
+    // output .d.ts.map declaration map files for consumers
+    "declarationMap": true,
     // output .js.map sourcemap files for consumers
     "sourceMap": true,
     // use Node's module resolution algorithm, instead of the legacy TS one

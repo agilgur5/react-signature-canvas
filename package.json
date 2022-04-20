@@ -49,7 +49,7 @@
     "clean": "rm -rf dist/ && rm -f *.tgz",
     "clean:build": "npm run clean && npm run build",
     "build": "concurrently -n rollup,tsc \"npm run build:rollup\" \"npm run build:types\"",
-    "build:rollup": "rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2",
+    "build:rollup": "rollup -c rollup.config.ts --configPlugin \"rollup-plugin-typescript2={ tsconfig: 'tsconfig.rollup.json' } \" ",
     "build:types": "tsc -p tsconfig.build.json",
     "build:watch": "concurrently -n rollup,tsc \"npm run build:rollup -- -w\" \"npm run build:types -- -w\"",
     "tsc": "tsc",
