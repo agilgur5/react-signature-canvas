@@ -11,6 +11,12 @@ module.exports = api => {
   if (isTest) presetEnv[1] = { ...presetEnv[1], ...jestTargets }
 
   return {
+    // @ts-expect-error -- @types/babel__core doesn't specify assumptions yet
+    assumptions: {
+      // optimizations equivalent to previous Babel 6 "loose" behavior for preset-stage-2 (https://github.com/babel/rfcs/blob/main/rfcs/0003-top-level-assumptions.md#assumptions-list, https://github.com/babel/babel/tree/v7.5.5/packages/babel-preset-stage-2)
+      setPublicClassFields: true,
+      constantSuper: true
+    },
     presets: [
       presetEnv,
       '@babel/preset-typescript',
