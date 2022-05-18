@@ -1,5 +1,6 @@
 import type { IPackageJson } from 'package-json-type'
-import type { IsExternal, RollupOptions, OutputOptions } from 'rollup'
+import type { RollupOptions, OutputOptions } from 'rollup'
+import { externals } from 'rollup-plugin-node-externals'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import { babel } from '@rollup/plugin-babel'
@@ -9,24 +10,6 @@ import { terser } from 'rollup-plugin-terser'
 import packageJson from './package.json'
 
 const pkgJson = packageJson as IPackageJson // coerce to the right type
-
-// treat deps and peerDeps as externals -- don't bundle them
-const depsList = [
-  ...Object.keys(pkgJson.dependencies ?? []),
-  ...Object.keys(pkgJson.peerDependencies ?? [])
-]
-
-// TODO: split this into a rollup plugin? submodule match is often missing
-const isExternal: IsExternal = (id) => {
-  // simple case: exact match (ex: '@babel/runtime')
-  if (depsList.includes(id)) return true
-  // submodule match (ex: '@babel/runtime/helpers/get')
-  for (const dep of depsList) {
-    if (id.startsWith(dep)) return true
-  }
-  // otherwise false
-  return false
-}
 
 const outputDefaults: OutputOptions = {
   // always provide a sourcemap for better debugging for consumers
@@ -56,8 +39,8 @@ const configs: RollupOptions[] = [{
     })],
     ...outputDefaults
   }],
-  external: isExternal,
   plugins: [
+    externals(), // https://github.com/Septh/rollup-plugin-node-externals#3-order-matters
     nodeResolve(),
     commonjs(),
     babel({
