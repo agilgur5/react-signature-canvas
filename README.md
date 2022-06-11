@@ -16,7 +16,7 @@
 [![dw](https://img.shields.io/npm/dw/react-signature-canvas.svg)](https://npmjs.org/package/react-signature-canvas)
 <br><!-- status / activity -->
 [![typings](https://img.shields.io/npm/types/react-signature-canvas.svg)](src/index.tsx)
-[![build status](https://img.shields.io/travis/com/agilgur5/react-signature-canvas/main.svg)](https://app.travis-ci.com/github/agilgur5/react-signature-canvas/branches)
+[![build status](https://img.shields.io/github/workflow/status/agilgur5/react-signature-canvas/CI/main)](https://github.com/agilgur5/react-signature-canvas/actions/workflows/ci.yml?query=branch%3Amain)
 [![code coverage](https://img.shields.io/codecov/c/gh/agilgur5/react-signature-canvas/main.svg)](https://codecov.io/gh/agilgur5/react-signature-canvas)
 <br>
 [![NPM](https://nodei.co/npm/react-signature-canvas.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/package/react-signature-canvas)
