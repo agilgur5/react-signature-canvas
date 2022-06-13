@@ -1,25 +1,11 @@
 {
-  // https://github.com/tsconfig/bases
-  "extends": "@tsconfig/strictest/tsconfig.json",
+  // https://github.com/agilgur5/tsconfig
+  "extends": "@agilgur5/tsconfig/src/tsconfig.library.json",
   // exclude node_modules (the default), dist dir, coverage dir, and example for now
   "exclude": ["node_modules/", "dist/", "coverage/", "example/"],
   // see https://www.typescriptlang.org/tsconfig to better understand tsconfigs
   "compilerOptions": {
     // output to dist/ dir
     "outDir": "dist/",
-    // output .d.ts declaration files for consumers
-    "declaration": true,
-    // output .d.ts.map declaration map files for consumers
-    "declarationMap": true,
-    // output .js.map sourcemap files for consumers
-    "sourceMap": true,
-    // use Node's module resolution algorithm, instead of the legacy TS one
-    "moduleResolution": "node",
-    // resolve JSON files
-    "resolveJsonModule": true,
-    // transpile JSX to React.createElement
-    "jsx": "react",
-    // ignored during builds, but commonly used when type-checking with `tsc`
-    "noEmit": true,
   }
 }
