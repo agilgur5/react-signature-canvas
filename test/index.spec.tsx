@@ -1,29 +1,31 @@
 import { jest, describe, it, test, expect } from '@jest/globals'
-import { mount, CommonWrapper } from 'enzyme'
+import { render } from '@testing-library/react';
 import React from 'react'
 
-import SignatureCanvas from '../src/index'
+import { SignatureCanvas, SignatureCanvasProps } from '../src/index'
 import { propsF, dotF } from './fixtures'
 
-function rSCInstance (wrapper: CommonWrapper): SignatureCanvas {
-  return wrapper.instance() as SignatureCanvas
+function renderSCWithRef (props?: SignatureCanvasProps) {
+  const ref = React.createRef<SignatureCanvas>()
+  const wrapper = render(<SignatureCanvas {...props} ref={ref} />)
+  const instance = ref.current!
+  return { wrapper, instance, ref }
 }
 
 test('mounts canvas and instance properly', () => {
-  const wrapper = mount(<SignatureCanvas />)
-  expect(wrapper.exists('canvas')).toBe(true)
-  const instance = rSCInstance(wrapper)
+  const { wrapper: { container }, instance } = renderSCWithRef()
+  expect(container.querySelector('canvas')).toBeTruthy()
   expect(instance.isEmpty()).toBe(true)
 })
 
 describe('setting and updating props', () => {
   it('should set default props', () => {
-    const instance = rSCInstance(mount(<SignatureCanvas />))
+    const { instance } = renderSCWithRef()
     expect(instance.props).toStrictEqual(SignatureCanvas.defaultProps)
   })
 
   it('should set initial mount props and SigPad options', () => {
-    const instance = rSCInstance(mount(<SignatureCanvas {...propsF.all} />))
+    const { instance } = renderSCWithRef(propsF.all)
     const sigPad = instance.getSignaturePad()
 
     expect(instance.props).toMatchObject(propsF.all)
@@ -31,8 +33,7 @@ describe('setting and updating props', () => {
   })
 
   it('should update props and SigPad options', () => {
-    const wrapper = mount(<SignatureCanvas />)
-    const instance = rSCInstance(wrapper)
+    const { wrapper, instance, ref } = renderSCWithRef()
     const sigPad = instance.getSignaturePad()
 
     // default props and options should not match new ones
@@ -40,14 +41,15 @@ describe('setting and updating props', () => {
     expect(sigPad).not.toMatchObject(propsF.sigPadOptions)
 
     // should match when updated
-    wrapper.setProps(propsF.all)
+    wrapper.rerender(<SignatureCanvas ref={ref} {...propsF.all} />)
     expect(instance.props).toMatchObject(propsF.all)
     expect(sigPad).toMatchObject(propsF.sigPadOptions)
   })
 })
 
 describe('SigCanvas wrapper methods return equivalent to SigPad', () => {
-  const rSigPad = rSCInstance(mount(<SignatureCanvas />))
+  const { instance } = renderSCWithRef()
+  const rSigPad = instance
   const sigPad = rSigPad.getSignaturePad()
 
   test('toData should be equivalent', () => {
@@ -122,9 +124,7 @@ describe('SigCanvas wrapper methods return equivalent to SigPad', () => {
 
 // comes after props and wrapper methods as it uses both
 describe('get methods', () => {
-  const instance = rSCInstance(mount(
-    <SignatureCanvas canvasProps={dotF.canvasProps} />
-  ))
+  const { instance } = renderSCWithRef({canvasProps: dotF.canvasProps})
   instance.fromData(dotF.data)
 
   test('getCanvas should return the same underlying canvas', () => {
@@ -141,8 +141,7 @@ describe('get methods', () => {
 
 // comes after props, wrappers, and gets as it uses them all
 describe('canvas resizing', () => {
-  const wrapper = mount(<SignatureCanvas />)
-  const instance = rSCInstance(wrapper)
+  const { wrapper, instance, ref } = renderSCWithRef()
   const canvas = instance.getCanvas()
 
   it('should clear on resize', () => {
@@ -154,7 +153,7 @@ describe('canvas resizing', () => {
   })
 
   it('should not clear when clearOnResize is false', () => {
-    wrapper.setProps({ clearOnResize: false })
+    wrapper.rerender(<SignatureCanvas ref={ref} clearOnResize={false} />)
 
     instance.fromData(dotF.data)
     expect(instance.isEmpty()).toBe(false)
@@ -166,7 +165,7 @@ describe('canvas resizing', () => {
   const size = { width: 100, height: 100 }
   it('should not change size if fixed width & height', () => {
     // reset clearOnResize back to true after previous test
-    wrapper.setProps({ clearOnResize: true, canvasProps: size })
+    wrapper.rerender(<SignatureCanvas ref={ref} clearOnResize={true} canvasProps={size} />)
     window.resizeTo(500, 500)
 
     expect(canvas.width).toBe(size.width)
@@ -174,7 +173,7 @@ describe('canvas resizing', () => {
   })
 
   it('should change size if no width or height', () => {
-    wrapper.setProps({ canvasProps: {} })
+    wrapper.rerender(<SignatureCanvas ref={ref} canvasProps={{}} />)
     window.resizeTo(500, 500)
 
     expect(canvas.width).not.toBe(size.width)
@@ -182,14 +181,14 @@ describe('canvas resizing', () => {
   })
 
   it('should partially change size if one of width or height', () => {
-    wrapper.setProps({ canvasProps: { width: size.width } })
+    wrapper.rerender(<SignatureCanvas ref={ref} canvasProps={{ width: size.width }} />)
     window.resizeTo(500, 500)
 
     expect(canvas.width).toBe(size.width)
     expect(canvas.height).not.toBe(size.height)
 
     // now do height instead
-    wrapper.setProps({ canvasProps: { height: size.height } })
+    wrapper.rerender(<SignatureCanvas ref={ref} canvasProps={{ height: size.height }} />)
     window.resizeTo(500, 500)
 
     expect(canvas.width).not.toBe(size.width)
@@ -199,8 +198,7 @@ describe('canvas resizing', () => {
 
 // comes after wrappers and resizing as it uses both
 describe('on & off methods', () => {
-  const wrapper = mount(<SignatureCanvas />)
-  const instance = rSCInstance(wrapper)
+  const { wrapper, instance } = renderSCWithRef()
 
   it('should not clear when off, should clear when back on', () => {
     instance.fromData(dotF.data)
@@ -229,8 +227,7 @@ describe('on & off methods', () => {
 
 // unmounting comes last
 describe('unmounting', () => {
-  const wrapper = mount(<SignatureCanvas />)
-  const instance = rSCInstance(wrapper)
+  const { wrapper, instance } = renderSCWithRef()
 
   it('should error when retrieving instance variables', () => {
     wrapper.unmount()

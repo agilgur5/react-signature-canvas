@@ -5,8 +5,6 @@ const config: Config.InitialOptions = {
   injectGlobals: false, // use @jest/globals
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: [
-    // configure enzyme w/ react adapter
-    '<rootDir>/test/config/configure-enzyme.js',
     // polyfill window.resizeTo
     'window-resizeto/polyfill'
   ],
