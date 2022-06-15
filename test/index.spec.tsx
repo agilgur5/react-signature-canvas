@@ -1,14 +1,14 @@
 import { jest, describe, it, test, expect } from '@jest/globals'
-import { render } from '@testing-library/react';
+import { render, RenderResult } from '@testing-library/react'
 import React from 'react'
 
 import { SignatureCanvas, SignatureCanvasProps } from '../src/index'
 import { propsF, dotF } from './fixtures'
 
-function renderSCWithRef (props?: SignatureCanvasProps) {
+function renderSCWithRef (props?: SignatureCanvasProps): { wrapper: RenderResult, instance: SignatureCanvas, ref: React.RefObject<SignatureCanvas> } {
   const ref = React.createRef<SignatureCanvas>()
   const wrapper = render(<SignatureCanvas {...props} ref={ref} />)
-  const instance = ref.current!
+  const instance = ref.current! // eslint-disable-line @typescript-eslint/no-non-null-assertion -- this simplifies the code; it does exist immediately after render. it won't exist after unmount, but we literally test for that separately
   return { wrapper, instance, ref }
 }
 
@@ -124,7 +124,7 @@ describe('SigCanvas wrapper methods return equivalent to SigPad', () => {
 
 // comes after props and wrapper methods as it uses both
 describe('get methods', () => {
-  const { instance } = renderSCWithRef({canvasProps: dotF.canvasProps})
+  const { instance } = renderSCWithRef({ canvasProps: dotF.canvasProps })
   instance.fromData(dotF.data)
 
   test('getCanvas should return the same underlying canvas', () => {
@@ -165,7 +165,7 @@ describe('canvas resizing', () => {
   const size = { width: 100, height: 100 }
   it('should not change size if fixed width & height', () => {
     // reset clearOnResize back to true after previous test
-    wrapper.rerender(<SignatureCanvas ref={ref} clearOnResize={true} canvasProps={size} />)
+    wrapper.rerender(<SignatureCanvas ref={ref} clearOnResize canvasProps={size} />)
     window.resizeTo(500, 500)
 
     expect(canvas.width).toBe(size.width)
