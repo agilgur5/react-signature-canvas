@@ -16,11 +16,9 @@
 [![dw](https://img.shields.io/npm/dw/react-signature-canvas.svg)](https://npmjs.org/package/react-signature-canvas)
 <br><!-- status / activity -->
 [![typings](https://img.shields.io/npm/types/react-signature-canvas.svg)](src/index.tsx)
-[![build status](https://img.shields.io/github/workflow/status/agilgur5/react-signature-canvas/CI/main)](https://github.com/agilgur5/react-signature-canvas/actions/workflows/ci.yml?query=branch%3Amain)
+[![build status](https://img.shields.io/github/actions/workflow/status/agilgur5/react-signature-canvas/ci.yml?branch=main)](https://github.com/agilgur5/react-signature-canvas/actions/workflows/ci.yml?query=branch%3Amain)
 [![code coverage](https://img.shields.io/codecov/c/gh/agilgur5/react-signature-canvas/main.svg)](https://codecov.io/gh/agilgur5/react-signature-canvas)
-<br>
-[![NPM](https://nodei.co/npm/react-signature-canvas.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/package/react-signature-canvas)
-<br>
+
 A React wrapper component around [signature_pad](https://github.com/szimek/signature_pad).
 
 Originally, this was just an _unopinionated_ fork of [react-signature-pad](https://github.com/blackjk3/react-signature-pad) that did not impose any styling or wrap any other unwanted elements around your canvas -- it's just a wrapper around a single canvas element!
@@ -31,7 +29,9 @@ This fork also allows you to directly pass [props](#props) to the underlying can
 
 ## Installation
 
-`npm i -S react-signature-canvas`
+```sh
+npm i -S react-signature-canvas
+```
 
 ## Usage
 
