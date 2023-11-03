@@ -64,7 +64,6 @@
     "changelog": "changelog-maker"
   },
   "peerDependencies": {
-    "prop-types": "^15.5.8",
     "react": "0.14 - 18",
     "react-dom": "0.14 - 18"
   },
@@ -73,6 +72,7 @@
     "@types/prop-types": "^15.7.3",
     "@types/react": "^18.0.12",
     "@types/signature_pad": "^2.3.0",
+    "prop-types": "^15.5.8",
     "signature_pad": "^2.3.2",
     "trim-canvas": "^0.1.0"
   },
