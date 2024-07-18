@@ -6,6 +6,7 @@ import trimCanvas from 'trim-canvas'
 export interface SignatureCanvasProps extends SignaturePad.SignaturePadOptions {
   canvasProps?: React.CanvasHTMLAttributes<HTMLCanvasElement>
   clearOnResize?: boolean
+  penColor?: string
 }
 
 export class SignatureCanvas extends Component<SignatureCanvasProps> {
@@ -25,8 +26,14 @@ export class SignatureCanvas extends Component<SignatureCanvasProps> {
     clearOnResize: PropTypes.bool
   }
 
-  static defaultProps: Pick<SignatureCanvasProps, 'clearOnResize'> = {
-    clearOnResize: true
+  static defaultProps: Pick<SignatureCanvasProps, 'clearOnResize' | 'penColor'> = {
+    clearOnResize: true,
+    /**
+     * This ensures that the pen color is set correctly when the parent component re-renders due to state changes and the penColor prop is passed as undefined.
+     * In such cases, the underlying signature_pad assigns fillColor as undefined, preventing drawing.
+     * Ideally, this issue should be fixed in the signature_pad library, but since we are using an older version, we need to handle it here.
+     */
+    penColor: 'black',
   }
 
   static refNullError = new Error('react-signature-canvas is currently ' +
