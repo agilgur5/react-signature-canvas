@@ -65,13 +65,13 @@
   },
   "peerDependencies": {
     "prop-types": "^15.5.8",
-    "react": "0.14 - 18",
-    "react-dom": "0.14 - 18"
+    "react": "0.14 - 19",
+    "react-dom": "0.14 - 19"
   },
   "dependencies": {
     "@babel/runtime": "^7.17.9",
     "@types/prop-types": "^15.7.3",
-    "@types/react": "^18.0.12",
+    "@types/react": "^19.0.2",
     "@types/signature_pad": "^2.3.0",
     "signature_pad": "^2.3.2",
     "trim-canvas": "^0.1.0"
@@ -96,8 +96,6 @@
     "jest-config": "^27.5.1",
     "package-json-type": "^1.0.3",
     "parcel": "^2.4.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "rollup": "^2.70.2",
     "rollup-plugin-node-externals": "^4.0.0",
     "rollup-plugin-terser": "^7.0.2",
