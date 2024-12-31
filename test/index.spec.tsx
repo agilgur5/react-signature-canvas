@@ -5,7 +5,7 @@ import React from 'react'
 import { SignatureCanvas, SignatureCanvasProps } from '../src/index'
 import { propsF, dotF } from './fixtures'
 
-function renderSCWithRef (props?: SignatureCanvasProps): { wrapper: RenderResult, instance: SignatureCanvas, ref: React.RefObject<SignatureCanvas> } {
+function renderSCWithRef (props?: SignatureCanvasProps): { wrapper: RenderResult, instance: SignatureCanvas, ref: React.RefObject<SignatureCanvas | null> } {
   const ref = React.createRef<SignatureCanvas>()
   const wrapper = render(<SignatureCanvas {...props} ref={ref} />)
   const instance = ref.current! // eslint-disable-line @typescript-eslint/no-non-null-assertion -- this simplifies the code; it does exist immediately after render. it won't exist after unmount, but we literally test for that separately
