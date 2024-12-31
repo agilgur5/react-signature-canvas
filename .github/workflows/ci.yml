@@ -7,8 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # TODO: add back Node 18 once node-canvas is properly supported: https://github.com/Automattic/node-canvas/issues/2025
-        node-version: [14.x, 16.x] # LTS Node: https://nodejs.org/en/about/releases/
+        node-version: [16.x, 18.x] # LTS Node: https://nodejs.org/en/about/releases/
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
