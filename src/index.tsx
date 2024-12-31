@@ -9,7 +9,7 @@ export interface SignatureCanvasProps extends SignaturePad.SignaturePadOptions {
 }
 
 export class SignatureCanvas extends Component<SignatureCanvasProps> {
-  static propTypes = {
+  static override propTypes = {
     // signature_pad's props
     velocityFilterWeight: PropTypes.number,
     minWidth: PropTypes.number,
