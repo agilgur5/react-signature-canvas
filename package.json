@@ -91,7 +91,7 @@
     "@rollup/plugin-node-resolve": "^13.2.1",
     "@testing-library/react": "^16.1.0",
     "canvas": "^3.0.0",
-    "concurrently": "^7.1.0",
+    "concurrently": "^9.1.2",
     "jest": "^27.5.1",
     "jest-config": "^27.5.1",
     "package-json-type": "^1.0.3",
