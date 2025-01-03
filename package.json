@@ -74,7 +74,6 @@
     "jest-without-globals": "^0.0.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hot-loader": "^4.13.0",
     "standard": "^13.0.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.2",

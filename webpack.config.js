@@ -16,8 +16,7 @@ module.exports = {
       exclude: /node_modules/,
       loaders: [
         query('babel-loader', {
-          presets: ['es2015', 'react', 'stage-2'],
-          plugins: ['react-hot-loader/babel']
+          presets: ['es2015', 'react', 'stage-2']
         })
       ]
     }, {
