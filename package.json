@@ -50,8 +50,8 @@
   },
   "peerDependencies": {
     "prop-types": "^15.5.8",
-    "react": "0.14 - 18",
-    "react-dom": "0.14 - 18"
+    "react": "0.14 - 19",
+    "react-dom": "0.14 - 19"
   },
   "dependencies": {
     "signature_pad": "^2.3.2",
@@ -59,7 +59,7 @@
   },
   "devDependencies": {
     "@agilgur5/changelog-maker": "^3.0.0",
-    "@testing-library/react": "^13.3.0",
+    "@testing-library/react": "^16.1.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.2",
     "babel-jest": "^23.6.0",
@@ -72,8 +72,8 @@
     "jest": "^24.8.0",
     "jest-environment-jsdom-fifteen": "^1.0.2",
     "jest-without-globals": "^0.0.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-hot-loader": "^4.13.0",
     "standard": "^13.0.2",
     "style-loader": "^0.13.1",
