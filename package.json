@@ -112,10 +112,5 @@
     "jest-environment-jsdom": {
       "canvas": "$canvas"
     }
-  },
-  "ts-standard": {
-    "ignore": [
-      "example"
-    ]
   }
 }
