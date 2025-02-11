@@ -1,46 +1,36 @@
-import React, { Component } from 'react'
+import React, { useState, useRef } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import SignaturePad from '../../src/index.tsx'
+import SignatureCanvas from '../../src/index.tsx'
 
 import * as styles from './styles.module.css'
 
-class App extends Component {
-  state = { trimmedDataURL: null }
+function App () {
+  const sigCanvas = useRef(null)
+  const [trimmedDataURL, setTrimmedDataURL] = useState(null)
 
-  sigPad = {}
-
-  clear = () => {
-    this.sigPad.clear()
+  function clear () {
+    sigCanvas.current.clear()
   }
 
-  trim = () => {
-    this.setState({
-      trimmedDataURL: this.sigPad.getTrimmedCanvas().toDataURL('image/png')
-    })
+  function trim () {
+    setTrimmedDataURL(sigCanvas.current.getTrimmedCanvas().toDataURL('image/png'))
   }
 
-  render () {
-    const { trimmedDataURL } = this.state
-    return <div className={styles.container}>
+  return (
+    <div className={styles.container}>
       <div className={styles.sigContainer}>
-        <SignaturePad canvasProps={{ className: styles.sigPad }}
-          ref={(ref) => { this.sigPad = ref }} />
+        <SignatureCanvas canvasProps={{ className: styles.sigCanvas }} ref={sigCanvas} />
       </div>
       <div>
-        <button className={styles.buttons} onClick={this.clear}>
-          Clear
-        </button>
-        <button className={styles.buttons} onClick={this.trim}>
-          Trim
-        </button>
+        <button className={styles.buttons} onClick={clear}>Clear</button>
+        <button className={styles.buttons} onClick={trim}>Trim</button>
       </div>
       {trimmedDataURL
-        ? <img className={styles.sigImage} alt='signature'
-          src={trimmedDataURL} />
+        ? <img className={styles.sigImage} alt='signature' src={trimmedDataURL} />
         : null}
     </div>
-  }
+  )
 }
 
 createRoot(document.getElementById('container')).render(<App />)

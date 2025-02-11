@@ -35,15 +35,16 @@ npm i -S react-signature-canvas
 
 ## Usage
 
-```javascript
+```jsx
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import SignatureCanvas from 'react-signature-canvas'
 
-ReactDOM.render(
+createRoot(
+  document.getElementById('my-react-container')
+).render(
   <SignatureCanvas penColor='green'
     canvasProps={{width: 500, height: 200, className: 'sigCanvas'}} />,
-  document.getElementById('react-container')
 )
 ```
 
@@ -80,10 +81,17 @@ Of these props, all, except for `canvasProps` and `clearOnResize`, are passed th
 
 ### API
 
-All API methods require a ref to the SignatureCanvas in order to use and are instance methods of the ref.
+All API methods require [a ref](https://react.dev/learn/manipulating-the-dom-with-refs) to the SignatureCanvas in order to use and are instance methods of the ref.
 
-```javascript
-<SignatureCanvas ref={(ref) => { this.sigCanvas = ref }} />
+```jsx
+import React, { useRef } from 'react'
+import SignatureCanvas from 'react-signature-canvas'
+
+function MyApp() {
+  const sigCanvas = useRef(null);
+
+  return <SignatureCanvas ref={sigCanvas} />
+}
 ```
 
 - `isEmpty()` : `boolean`, self-explanatory
