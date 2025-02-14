@@ -20,7 +20,8 @@
     "start": "parcel example/public/index.html --open",
     "clean": "rm -rf dist/ && rm -f *.tgz",
     "clean:build": "npm run clean && npm run build",
-    "build": "parcel build example/public/index.html"
+    "build": "parcel build example/public/index.html",
+    "build:open": "cd dist/ && open http://localhost:8000 && python -m http.server"
   },
   "dependencies": {
     "prop-types": "^15.5.8",
