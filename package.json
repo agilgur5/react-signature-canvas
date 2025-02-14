@@ -1,7 +1,7 @@
 {
-  "name": "react-signature-canvas-example",
+  "name": "react-signature-canvas-example-codesandbox",
   "version": "1.0.7",
-  "description": "Example for react-signature-canvas",
+  "description": "CodeSandbox Example for react-signature-canvas",
   "author": "Anton Gilgur",
   "license": "Apache-2.0",
   "homepage": "https://github.com/agilgur5/react-signature-canvas",
@@ -17,11 +17,7 @@
   },
   "private": true,
   "scripts": {
-    "start": "parcel example/public/index.html --open",
-    "clean": "rm -rf dist/ docs/ && rm -f *.tgz",
-    "clean:build": "npm run clean && npm run build",
-    "build": "parcel build example/public/index.html --dist-dir docs/ --public-url ./",
-    "build:open": "cd docs/ && open http://localhost:8000 && python -m http.server"
+    "start": "parcel index.html --open"
   },
   "dependencies": {
     "prop-types": "^15.5.8",
