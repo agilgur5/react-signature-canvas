@@ -64,14 +64,22 @@
     "changelog": "changelog-maker"
   },
   "peerDependencies": {
+    "@types/prop-types": "^15.7.3",
+    "@types/react": "0.14 - 19",
     "prop-types": "^15.5.8",
     "react": "0.14 - 19",
     "react-dom": "0.14 - 19"
   },
+  "peerDependenciesMeta": {
+    "@types/prop-types": {
+      "optional": true
+    },
+    "@types/react": {
+      "optional": true
+    }
+  },
   "dependencies": {
     "@babel/runtime": "^7.17.9",
-    "@types/prop-types": "^15.7.3",
-    "@types/react": "^19.0.2",
     "@types/signature_pad": "^2.3.0",
     "signature_pad": "^2.3.2",
     "trim-canvas": "^0.1.0"
@@ -90,6 +98,8 @@
     "@rollup/plugin-commonjs": "^21.1.0",
     "@rollup/plugin-node-resolve": "^13.2.1",
     "@testing-library/react": "^16.1.0",
+    "@types/prop-types": "^15.7.3",
+    "@types/react": "^19.0.2",
     "canvas": "^3.0.0",
     "concurrently": "^9.1.2",
     "jest": "^29.7.0",
