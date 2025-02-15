@@ -1,6 +1,6 @@
 {
   "name": "react-signature-canvas",
-  "version": "1.0.5",
+  "version": "1.1.0-alpha.1",
   "description": "A React wrapper component around signature_pad. 100% test coverage, types, examples, & more. Unopinionated and heavily updated fork of react-signature-pad",
   "source": "src/index.tsx",
   "main": "dist/index.umd.min.js",
