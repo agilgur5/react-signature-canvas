@@ -60,8 +60,7 @@
     "test:watch": "jest --watch",
     "test:pub": "npm run clean:build && npm pack",
     "prepub": "concurrently -n test-pub,test-cov,tsc \"npm run test:pub\" \"npm run test:coverage\" \"npm run tsc\"",
-    "pub": "npm run clean:build && npm publish",
-    "changelog": "changelog-maker"
+    "pub": "npm run clean:build && npm publish"
   },
   "peerDependencies": {
     "@types/prop-types": "^15.7.3",
@@ -85,7 +84,6 @@
     "trim-canvas": "^0.1.0"
   },
   "devDependencies": {
-    "@agilgur5/changelog-maker": "^3.0.0",
     "@agilgur5/tsconfig": "^0.0.1",
     "@babel/core": "^7.17.9",
     "@babel/plugin-transform-runtime": "^7.17.0",
