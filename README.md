@@ -25,7 +25,7 @@ Originally, this was just an _unopinionated_ fork of [react-signature-pad](https
 Hence the naming difference.
 Nowadays, this repo / library has significantly evolved, introducing new features, fixing various bugs, and now wrapping the upstream `signature_pad` to have its updates and bugfixes baked in.
 
-This fork also allows you to directly pass [props](#props) to the underlying canvas element, has new, documented [API methods](#api) you can use, has new, documented [props](#props) you can pass to it, has a [live demo](https://agilgur5.github.io/react-signature-canvas/), has a [CodeSandbox playground](https://codesandbox.io/s/github/agilgur5/react-signature-canvas/tree/cra-example), has [100% test coverage](https://codecov.io/gh/agilgur5/react-signature-canvas), and is [written in TypeScript](src/index.tsx).
+This fork also allows you to directly pass [props](#props) to the underlying canvas element, has new, documented [API methods](#api) you can use, has new, documented [props](#props) you can pass to it, has a [live demo](https://agilgur5.github.io/react-signature-canvas/), has a [CodeSandbox playground](https://codesandbox.io/s/github/agilgur5/react-signature-canvas/tree/codesandbox-example), has [100% test coverage](https://codecov.io/gh/agilgur5/react-signature-canvas), and is [written in TypeScript](src/index.tsx).
 
 ## Installation
 
