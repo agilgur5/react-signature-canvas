@@ -99,7 +99,6 @@
     "jest-environment-jsdom": "^29.7.0",
     "package-json-type": "^1.0.3",
     "parcel": "^2.4.1",
-    "process": "^0.11.10",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "rollup": "^2.70.2",
