@@ -7,7 +7,8 @@
   "module": "dist/index.mjs",
   "exports": {
     "require": "./dist/index.umd.min.js",
-    "default": "./dist/index.mjs"
+    "default": "./dist/index.mjs",
+    "types": "./dist/index.d.ts"
   },
   "typings": "dist/index.d.ts",
   "files": [
