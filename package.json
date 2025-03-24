@@ -2,18 +2,18 @@
   "name": "react-signature-canvas",
   "version": "1.1.0-alpha.1",
   "description": "A React wrapper component around signature_pad. 100% test coverage, types, examples, & more. Unopinionated and heavily updated fork of react-signature-pad",
-  "source": "src/index.tsx",
-  "main": "dist/index.umd.min.js",
-  "module": "dist/index.mjs",
+  "source": "./src/index.tsx",
+  "main": "./dist/index.umd.min.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     "require": "./dist/index.umd.min.js",
     "default": "./dist/index.mjs",
     "types": "./dist/index.d.ts"
   },
-  "typings": "dist/index.d.ts",
   "files": [
-    "src/",
-    "dist/"
+    "./src/",
+    "./dist/"
   ],
   "author": "Anton Gilgur",
   "license": "Apache-2.0",

@@ -2,7 +2,7 @@
   // tsconfig.json is used for type-checking _all_ files, tsconfig.build.json is just used for the build
   "extends": "./tsconfig.json",
   // allowlist of files to build
-  "files": ["src/index.tsx", "typings/trim-canvas.d.ts"],
+  "files": ["src/index.tsx", "types/trim-canvas.d.ts"],
   "compilerOptions": {
     // override the base
     "noEmit": false,
