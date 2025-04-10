@@ -1,0 +1,74 @@
+name: Reproducible Bug Report
+description: If you found a bug within `react-signature-canvas` itself and have a minimal reproduction of it. For support requests, use StackOverflow.
+body:
+  # larger description of what this template's intended usage is
+  - type: markdown
+    attributes:
+      value: |
+        This template is to report a reproducible bug within `react-signature-canvas` itself.
+
+        Issues [should _not_](https://docs.github.com/en/get-started/using-github/communicating-on-github) be used for support requests -- use [StackOverflow](https://stackoverflow.com/search?q=react-signature-canvas) for that instead.
+
+        This should _not_ be used for issues with the underlying `signature_pad` -- use [`signature_pad`'s issues](https://github.com/szimek/signature_pad/issues) for that instead.
+
+        Before opening a new issue, please do a [search of existing issues](https://github.com/agilgur5/react-signature-canvas/issues) and :+1: upvote any existing relevant issues instead.
+        Do not open duplicates of existing issues.
+
+  # require that users have searched existing issues
+  - type: checkboxes
+    attributes:
+      label: Have you searched the existing issues?
+      description: Please search to see if an issue already exists for the problem you encountered
+      options:
+        - label: I have searched the existing issues and cannot find my problem
+          required: true
+
+  # require that users provide a minimal reproduction
+  - type: input
+    attributes:
+      label: Provide a link to code that _minimally_ reproduces this bug
+      description: |
+        Link to a [minimal reproduction](https://stackoverflow.com/help/minimal-reproducible-example) via a public [CodeSandbox](https://codesandbox.io/s/github/agilgur5/react-signature-canvas/tree/codesandbox-example), StackBlitz project, or GitHub repository.
+
+        _Skipping this or providing an invalid link may result in your issue being summarily closed._
+      placeholder: 'https://codesandbox.io/p/sandbox/my-minimal-react-signature-canvas-bug-reproduction'
+    validations:
+      required: true
+
+  # require that users provide their environment details
+  - type: textarea
+    attributes:
+      label: Provide version numbers for your environment by running the below command
+      description: npx envinfo --npmPackages react-signature-canvas,react,react-dom,typescript --npmGlobalPackages typescript --binaries --browsers --system os
+      render: text # render as a ```text code block
+      # example output to clue in user about what it should look like
+      placeholder: |
+          System:
+            OS: macOS 14.5
+          Binaries:
+            Node: 22.14.0 - ~/.local/share/mise/installs/node/22.14.0/bin/node
+            Yarn: 1.22.19 - /usr/local/bin/yarn
+            npm: 10.9.2 - ~/.local/share/mise/installs/node/22.14.0/bin/npm
+          Browsers:
+            Chrome: 134.0.6998.166
+            Safari: 17.5
+          npmPackages:
+            react: ^19.0.0 => 19.0.0
+            react-dom: ^19.0.0 => 19.0.0
+            react-signature-canvas: ^1.0.7 => 1.0.7
+            typescript: ^4.6.3 => 4.6.4
+    validations:
+      required: true
+
+  # describe the problem
+  - type: textarea
+    attributes:
+      label: Describe the problem, how to reproduce it, and why you believe the behavior is a bug in this library
+      description: What is the current behavior vs. the expected behavior?
+      render: markdown # render directly as markdown
+      # example output to clue in user about what it should look like
+      placeholder: |
+        In the provided reproduction, run `npm run typecheck`. This results in a TypeScript error: `Could not find a declaration file for module 'react-signature-canvas'`.
+        As this library is natively written in TypeScript, I assumed that type declarations should be provided and that a TS build would succeed.
+    validations:
+      required: true
