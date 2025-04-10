@@ -1,0 +1,7 @@
+contact_links:
+  - name: Search on StackOverflow
+    url: https://stackoverflow.com/search?q=react-signature-canvas
+    about: Use StackOverflow for support questions. Issues are for reproducible bug reports and feature requests.
+  - name: Upstream `signature_pad`'s issues
+    url: https://github.com/szimek/signature_pad/issues
+    about: This library is a wrapper around `signature_pad`. If you have an with `signature_pad` itself (as opposed to this wrapper), please see its issue tracker.
