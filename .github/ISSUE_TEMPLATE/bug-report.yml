@@ -11,7 +11,9 @@ body:
 
         This should _not_ be used for issues with the underlying `signature_pad` -- use [`signature_pad`'s issues](https://github.com/szimek/signature_pad/issues) for that instead.
 
-        Before opening a new issue, please do a [search of existing issues](https://github.com/agilgur5/react-signature-canvas/issues) and :+1: upvote any existing relevant issues instead.
+        Before opening a new issue, please do a [search of existing issues](https://github.com/agilgur5/react-signature-canvas/issues?q=is%3Aissue). \
+        If a relevant open issue exists, you should :+1: upvote it instead.
+        If a relevant closed issue exists, please follow the directions of the closing comments. \
         Do not open duplicates of existing issues.
 
   # require that users have searched existing issues
