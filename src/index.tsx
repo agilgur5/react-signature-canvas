@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import SignaturePad from 'signature_pad'
 import trimCanvas from 'trim-canvas'
@@ -9,22 +8,6 @@ export interface SignatureCanvasProps extends SignaturePad.SignaturePadOptions {
 }
 
 export class SignatureCanvas extends Component<SignatureCanvasProps> {
-  static override propTypes = {
-    // signature_pad's props
-    velocityFilterWeight: PropTypes.number,
-    minWidth: PropTypes.number,
-    maxWidth: PropTypes.number,
-    minDistance: PropTypes.number,
-    dotSize: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
-    penColor: PropTypes.string,
-    throttle: PropTypes.number,
-    onEnd: PropTypes.func,
-    onBegin: PropTypes.func,
-    // props specific to the React wrapper
-    canvasProps: PropTypes.object,
-    clearOnResize: PropTypes.bool
-  }
-
   static defaultProps: Pick<SignatureCanvasProps, 'clearOnResize'> = {
     clearOnResize: true
   }
